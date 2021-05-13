@@ -4,16 +4,20 @@ public class Program
 {
 	public static void Main()
 	{
+		// Se inicializa la matriz, y la posición de la reina
 		int cols = 5; int rows = 5; int col_queen = 3; int row_queen = 2;
 		int[,] tab = new int[cols,rows];
+		//Se marca la posición de la reina con el valor 1
 		tab[col_queen, row_queen] = 1;
+		//Se marcan las posiciones con obstaculo con el valor -1
 		tab[4,4]=-1; tab[3,1]=-1;tab[1,2]=-1;
+		//Se llena lo restante con 0
 		for(int i=0; i< cols; i++)
 			for(int j =0; j<rows; j++)
 				if(!(tab[i, j] == -1 || tab[i, j] == 1))
 					tab[i, j] = 0;
 		int cont = 0;
-		
+		//Se validan las columnas
 		for(int i = col_queen; i < cols; i++){
 			if(tab[i, row_queen] == 0)
 				cont=cont+1;
@@ -26,6 +30,7 @@ public class Program
 			else if (tab[i, row_queen] == -1)
 				i = 0;
 		}
+		//Se validan las filas
 		for(int i = row_queen; i < cols; i++){
 			if(tab[col_queen, i] == 0)
 				cont=cont+1;
@@ -38,6 +43,7 @@ public class Program
 			else if (tab[col_queen, i] == -1)
 				i = 0;
 		}
+		//Se validan las diagonales
 		int id = col_queen; int jd = row_queen;
 		while(id >= 0 && jd < rows){
 				if(tab[id, jd] == 0)
